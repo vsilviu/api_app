@@ -1,7 +1,6 @@
 package ro.apisec.ms.demo.config;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -39,7 +38,8 @@ public class BlockAuthenticationFilter implements Filter {
         if (backendThrottler.reached(blockAuthenticationFailedLogin)) {
             final HttpServletResponse httpServletResponse = (HttpServletResponse) response;
             final HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            if (!httpServletRequest.getRequestURI().endsWith("/loginDisabled")) {
+
+            if (!httpServletRequest.getRequestURI().endsWith("/loginDisabled") && !CurrentAuthenticatedUser.isAuthenticated()) {
                 httpServletResponse.sendRedirect("/loginDisabled");
                 return;
             }

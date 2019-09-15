@@ -26,6 +26,10 @@
         <h4 sec:authorize="isAuthenticated()">6 Registration <a th:href="@{/registration}">New User</a></h4>
         <h4>7 BasicAuth <a th:href="@{/basicAuthEndpoint}">Special login</a></h4>
     </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
 
 </div>
 

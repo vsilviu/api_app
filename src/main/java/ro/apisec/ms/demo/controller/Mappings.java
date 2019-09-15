@@ -1,5 +1,6 @@
 package ro.apisec.ms.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -47,7 +48,7 @@ public class Mappings {
     }
 
     @GetMapping("/methodAuthorization")
-//    @PreAuthorize("hasAuthority('SOME_UNDEFINED_AUTHORITY')")
+    @PreAuthorize("hasAuthority('SOME_UNDEFINED_AUTHORITY')")
     public String authorizationOnMethod() {
         return "/error/403";
     }

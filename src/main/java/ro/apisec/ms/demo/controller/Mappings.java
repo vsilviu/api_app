@@ -3,6 +3,7 @@ package ro.apisec.ms.demo.controller;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import ro.apisec.ms.demo.config.CurrentAuthenticatedUser;
 
 @Controller
 public class Mappings {
@@ -39,6 +40,9 @@ public class Mappings {
 
     @GetMapping("/login")
     public String login() {
+        if(CurrentAuthenticatedUser.isAuthenticated()){
+            return "redirect:/";
+        }
         return "/login";
     }
 
